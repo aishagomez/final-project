@@ -42,7 +42,8 @@ Follow these steps to set up and run the application on your local environment.
         'HOST': 'localhost',
         'PORT': 3306,
             }
-        }```
+        }
+      ```
     - Make migrations:
       ```sh
       python manage.py makemigrations
