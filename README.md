@@ -33,16 +33,12 @@ Follow these steps to set up and run the application on your local environment.
 4. **Configure the database:**
     - Modify the `settings.py` file to configure your database (Choose ENGINE acording to your preferences).
       ```
-      DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DatabaseName',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 3306,
-            }
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
       ```
     - Make migrations:
       ```sh
