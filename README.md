@@ -22,7 +22,7 @@ Follow these steps to set up and run the application on your local environment.
 2. **Create a virtual environment:**
     ```sh
     python3 -m venv venv
-    source venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+    source venv/bin/activate  # On Windows, use `.venv\Scripts\activate` or use `venv\Scripts\activate`
     ```
 
 3. **Install the dependencies:**
