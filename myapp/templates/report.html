@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Reporte del Proyecto {{ project.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>'{{ project.name }}' project report</h1>
+
+    <section class="project-details">
+        <div class="column">
+            <h2>Project {{ project.name }} details:</h2>
+            <p><strong>Estimated start date:</strong> {{ project.estimated_start_date }}</p>
+            <p><strong>Official start date:</strong> {{ project.official_start_date }}</p>
+        </div>
+        <div class="column">
+            <p><strong>Status:</strong> {{ project.status }}</p>
+            <p><strong>Description:</strong> {{ project.description }}</p>
+        </div>
+        <div class="column">
+            <p><strong>Estimated end date:</strong> {{ project.estimated_end_date }}</p>
+            <p><strong>Official end date:</strong> {{ project.official_end_date }}</p>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Project team:</h2>
+        <ul>
+            <li><strong>Team id:</strong> {{ project_team.team_id }}</li>
+            <li><strong>Manager:</strong> {{ project_team.manager }}</li>
+            </ul>
+        <ul>
+            {% for member in project_team_employees %}
+                <li>{{ member.name }} - {{ member.email }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Actividades:</h2>
+        <ul>
+            {% for activity in activities %}
+                <li>
+                    <strong>{{ activity.title }}</strong> - {{ activity.description }}
+                    <ul>
+                        <li><strong>Estimated dates:</strong> {{ activity.estimated_start_date }} to {{ activity.estimated_end_date }}</li>
+                        <li><strong>Official dates:</strong> {{ activity.start_date }} to {{ activity.end_date }}</li>
+                        <li><strong>Status:</strong> {{ activity.status }}</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Tasks:</strong></li>
+                        <ul>
+                            {% for task in tasks_act %}
+                                {% if task.activity == activity %}
+                                    <li>{{ task.title }} - {{ task.description }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Budget:</h2>
+        <ul>
+        <li><strong>Total Amount:</strong> {{ budget.total_amount }}</li>
+        <li><strong>Allocated Amount:</strong> {{ budget.allocated_amount }}</li>
+        <li><strong>Remaining Amount:</strong> {{ budget.remaining_amount }}</li>
+        <li><strong>Expenses:</strong>
+        </ul>
+            <ul>
+                <li>
+                {% for expense in expenses %}
+                        <ul>
+                        <strong>Description:</strong> {{ expense.description }}<br>
+                        <strong>Amount:</strong> {{ expense.amount }}<br>
+                        <strong>Invoice:</strong> {{ expense.invoice }}
+                        </ul>
+                {% endfor %}
+            </li>
+
+            </ul>
+        </section>
+    </section>
+
+    <section>
+        <h2>Deliverables:</h2>
+        <ul>
+            {% for deliverable in deliverables %}
+                <li>{{ deliverable.description }} - Deadline: {{ deliverable.deadline }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <form action="{% url 'export_pdf' project_id=project.project_id %}" method="get">
+        <button type="submit">Download PDF</button>
+    </form>
+</div>
+{% endblock %}

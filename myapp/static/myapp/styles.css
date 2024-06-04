@@ -1,0 +1,331 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, Tahoma, Arial, Helvetica, sans-serif;
+    background-color: #fff0f5;
+    margin: 0;
+    padding: 20px;
+    text-align: center; 
+} 
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: left;
+    color: #333;
+    padding-bottom: 10px;
+}
+
+.project-details {
+    display: flex;
+}
+
+.project-details .column {
+    flex: 1;
+    margin-top: auto;
+    padding: 20px 10px;
+    text-align: left;
+}
+
+.project-details .column:first-child {
+    padding-left: 0;
+}
+
+
+.project-details h2 {
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+li {
+    padding: 8px 0;
+    text-align: left;
+    
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="text"]::placeholder {
+    color: rgb(146, 146, 146);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffb6c1; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 1%;
+}
+
+button.small-button {
+    width: 80px;
+    padding: 10px 10px;
+    background-color: #f9a7b3; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 1%;
+}
+
+button:hover {
+    background-color: #ff69b4; 
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #ffb6c1; 
+    color: white;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #ffe4e1; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.errorlist {
+    display: none;
+}
+
+header {
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+nav ul {
+    background-color: #ffb6c1; 
+    list-style-type: none;
+    padding: 0px;
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    height: 100%;
+    border-radius: 10px;
+}
+
+nav ul li {
+    margin: 10px 10px;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: flex; 
+    align-items: center;
+    box-sizing: border-box;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #f9a7b3; 
+}
+
+nav ul li.active a {
+    background-color: #f9a7b3; 
+    border-radius: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+
+
+
+.flex-container {
+    display: flex;
+}
+
+.projects {
+    width: 85%;
+}
+
+
+.tools-container {
+    width: 15%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: 5%;
+    padding: 10px;
+}
+
+.tools-container h2 {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color:  #ffe4e1; 
+    box-sizing: border-box;
+}
+
+.tools-container ul {
+    list-style-type: none;
+    padding: 0;
+    border-radius: 10px;
+    margin-top: 10px; 
+    margin-left: 0;
+}
+
+.tools-container ul li {
+    padding: 10px;
+    width: calc(100%-20px);
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tools-container ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+
+}
+
+.tools-container ul li:hover {
+    background-color: #ffe4e1;
+    border-radius: 10px;
+}
+
+.tools-container ul li a:hover {
+    cursor: pointer;
+}
+
+
+.row {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.project-box {
+    background-color: #ffe4e1;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.project-box:hover {
+    background-color:#ffb6c1;
+}
+
+.column {
+    flex: 1;
+    margin-top: auto;
+    padding: 20px 10px;
+    text-align: left;
+    align-items: center;
+}
+.project-name {
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 40%;
+}
+
+.details {
+    width: 85%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-size: 14px;
+}
+
+
+.details h4 {
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-weight: normal;
+}
+
+
+.details h2, .details h3, .details p {
+    margin: 20px;
+}
+
+.details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details ul li {
+    padding: 8px 0;
+}

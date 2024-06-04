@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Get Element
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Get Element</h1>
+        <form method="get" action="{% url 'get_object' %}">
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>Search Results:</h2>
+            <table class="container">
+                <thead>
+                    <tr>
+                        {% for field_name in field_names %}
+                                <th>{{ field_name|capfirst }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                {% if obj_values %}
+                <tbody>
+                    {% for row in obj_values %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableSelect = document.getElementById('id_table');
+            const attributeSelect = document.getElementById('id_attribute');
+            function capitalize(str) {
+                return str.replace(/\b\w/g, function(char) {
+                    return char.toUpperCase();
+                });
+            }       
+            function loadAttributes() {
+                const selectedTable = tableSelect.value;
+                if (selectedTable) {
+                    fetch(`/get_attributes/?table=${selectedTable}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            while (attributeSelect.firstChild) {
+                                attributeSelect.removeChild(attributeSelect.firstChild);
+                            }
+                            data.attributes.forEach(attribute => {
+                                const option = document.createElement('option');
+                                option.value = attribute;
+                                option.textContent = capitalize(attribute.replace(/_/g, ' '));
+                                attributeSelect.appendChild(option);
+                            });
+                        });
+                } else {
+                    while (attributeSelect.firstChild) {
+                        attributeSelect.removeChild(attributeSelect.firstChild);
+                    }
+                }
+            }
+            
+            tableSelect.addEventListener('change', loadAttributes);
+            
+            loadAttributes();
+        });
+    </script>
+{% endblock %}

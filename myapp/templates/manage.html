@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Manage {{ table|capfirst }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="flex-container">
+        <div class="tools-container">
+            <h2>Tools</h2>
+            <ul>
+                <li><a href="{% url 'show_table' %}">View table</a></li>
+                <li><a href="{% url 'choose_table_insert' %}">Insert</a></li>
+                <li><a href="{% url 'get_attributes' %}">Get</a></li>
+                <li><a href="{% url 'choose_object' %}">Update</a></li>
+                <li><a href="{% url 'delete_object' %}">Delete</a></li>
+                <li><a href="{% url 'new_project' %}">New project</a></li>
+                <li><a href="{% url 'choose_project' %}">Report</a></li>
+            </ul>
+        </div>
+        
+        <div class="details">
+            {% if entity %}
+                <h2>{{ table|capfirst }} Details</h2>
+                {% for field, value in entity %}
+                <h4><strong>{{ field|capfirst }}:</strong> {{ value|capfirst }}</h4><br>
+                {% endfor %}
+            {% endif %}
+            {% if related_entities %}
+                {% for key, items in related_entities.items %}
+                    {% if key == 'Activity' %}
+                        <h3>Activities</h3>
+                    {% elif key == 'Derivable' %}
+                        <h3>Derivables</h3>
+                    {% elif key == 'Expense' %}
+                        <h3>Expenses</h3>
+                    {% elif key == 'Employee' %}
+                        <h3>Team</h3>
+                        {% for field, value in Team %}
+                        {% if field != 'project id' %}
+                            <h4><strong>{{ field|capfirst }}:</strong> {{ value|capfirst }}</h4><br>
+                        {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    <h3>{{ key|capfirst }}</h3>
+                    {% endif %}
+                    <table>
+                        <thead>
+                            <tr>
+                                {% for field, value in items.0 %}
+                                    <th>{{ field|capfirst }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                {% if key in displayed_keys %}
+                                    <td><a href="{% url 'manage' table=key id=item.0.1 %}">{{ item.0.1 }}</a></td>
+                                    {% for field, value in item|slice:"1:" %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                {% else %}
+                                {% for field, value in item %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}  
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

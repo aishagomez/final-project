@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="flex-container">
+        <div class="tools-container">
+            <h2>Tools</h2>
+            <ul>
+                <li><a href="{% url 'show_table' %}">View table</a></li>
+                <li><a href="{% url 'choose_table_insert' %}">Insert</a></li>
+                <li><a href="{% url 'get_object' %}">Get</a></li>
+                <li><a href="{% url 'choose_object' %}">Update</a></li>
+                <li><a href="{% url 'delete_object' %}">Delete</a></li>
+                <li><a href="{% url 'new_project' %}">New project</a></li>
+                <li><a href="{% url 'choose_project' %}">Report</a></li>
+            </ul>
+        </div>
+        
+        <div class="projects">
+            <h2>Projects</h2>
+            {% for project in projects %}
+            <div class="project-box" onclick="redirectToManage('Project', '{{ project.project_id }}')">
+                    <div class="project-name">{{ project.name }}</div>
+                    <div class="column">
+                        <div class="row">Id: {{ project.project_id }}</div>
+                        <div class="row">Process: {{ project.status }}</div>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+        <script>
+            function redirectToManage(table, projectId) {
+                var url = "{% url 'manage' table='__table__' id=0 %}"
+                    .replace('__table__', table)
+                    .replace(0, projectId);
+                location.href = url;
+            }
+        </script>
+        
+        
+        
+        
+    </div>
+</div>
+{% endblock %}

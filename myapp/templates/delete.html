@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete Element
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Delete Element</h1>
+    <form method="get" action="{% url 'delete_object' %}" id="deleteForm">
+        {% csrf_token %}
+        <select name="table" id="id_table">
+            {% for choice in form.table.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+        <select name="attribute" id="id_attribute">
+            <option value="">---Choose Attribute---</option>
+        </select>
+        <input type="text" name="value" id="id_value" placeholder="Value" required>
+        <button type="submit">Delete</button>
+    </form>
+    
+    {% if obj_data %}
+        <div class="message">
+            <h2>Object Deleted:</h2>
+            <p>Object has been deleted.</p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableSelect = document.getElementById('id_table');
+        const attributeSelect = document.getElementById('id_attribute');
+        const attributeValueInput = document.getElementById('id_value');
+        function capitalize(str) {
+            return str.replace(/\b\w/g, function(char) {
+                return char.toUpperCase();
+            });
+        }       
+        function loadAttributes() {
+            const selectedTable = tableSelect.value;
+            if (selectedTable) {
+                fetch(`/get_attributes/?table=${selectedTable}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        while (attributeSelect.firstChild) {
+                            attributeSelect.removeChild(attributeSelect.firstChild);
+                        }
+                        data.attributes.forEach(attribute => {
+                            const option = document.createElement('option');
+                            option.value = attribute;
+                            option.textContent = capitalize(attribute.replace(/_/g, ' '));
+                            attributeSelect.appendChild(option);
+                        });
+                    });
+            } else {
+                while (attributeSelect.firstChild) {
+                    attributeSelect.removeChild(attributeSelect.firstChild);
+                }
+            }
+        }
+        
+        tableSelect.addEventListener('change', loadAttributes);
+        
+        loadAttributes();
+    });
+</script>
+{% endblock %}

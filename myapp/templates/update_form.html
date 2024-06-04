@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Object
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if update_success %}
+        <p>Object with {{ attribute }} = {{ value }} updated successfully.</p>
+    {% else %}
+    <h1>Update {{ table_name }}</h1>
+    <form method="post" action="{% url 'update_object' table=table_name attribute=attribute value=value %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    {% endif %}
+    
+    
+    {% if errors %}
+        <p>Errors: {{ errors }}</p>
+    {% endif %}
+</div>
+{% endblock %}
