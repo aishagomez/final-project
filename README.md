@@ -50,7 +50,7 @@ Follow these steps to set up and run the application on your local environment.
       ```
     That should create all tables in your database.
 
-5. **Create a superuser to access the Django admin:**
+5. **(Optional) Create a superuser to access the Django admin:**
     ```sh
     python manage.py createsuperuser
     ```
