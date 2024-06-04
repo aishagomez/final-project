@@ -265,7 +265,6 @@ def insert_table(request, table):
             if form.is_valid():
                 data = {field_name.replace(' ', '_'): form.cleaned_data[field_name] for field_name in form.cleaned_data}
                 
-                # Convert foreign key fields to model instances
                 for field in model._meta.fields:
                     if field.get_internal_type() == 'ForeignKey':
                         related_model = field.related_model
